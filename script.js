@@ -49,7 +49,7 @@ AppData.prototype.check = function () {
         }
 };
 
-AppData.prototype.start = function() {
+AppData.prototype.startBtn = function() { //AppData.prototype.start поменял на startBtn
      if (salaryAmount.value === '') {
         startBtn.setAttribute('disabled', 'true'); 
         return;
@@ -242,24 +242,25 @@ AppData.prototype.start = function() {
         depositCheck.checked = false;
     };
 
+    AppData.prototype.eventListener = function () {
+        startBtn.addEventListener('click', appData.startBtn.bind(appData));//'click', appData.start поменял на на startBtn
+        expensesPlus.addEventListener('click', appData.addExpensesBlock);
+        incomePlus.addEventListener('click', appData.addIncomeBlock);
+        salaryAmount.addEventListener('keyup', appData.check);
+        cancel.addEventListener('click', appData.reset.bind(appData));
 
+        periodSelect.addEventListener('change', function () {
+            periodAmount.innerHTML = periodSelect.value;
+        });
+
+        let addExp = [];
+        for (let i = 0; i < appData.addExpenses.length; i++) {
+            let element = appData.addExpenses[i].trim();
+            element = element.charAt(0).toUpperCase() + element.substring(i).toLowerCase();
+            addExp.push(element);
+        }
+    };
 
 const appData = new AppData();
-console.log(appData);
+appData.eventListener();
 
-startBtn.addEventListener('click', appData.start.bind(appData));
-expensesPlus.addEventListener('click', appData.addExpensesBlock);
-incomePlus.addEventListener('click', appData.addIncomeBlock);
-salaryAmount.addEventListener('keyup', appData.check);
-cancel.addEventListener('click', appData.reset.bind(appData));
-
-periodSelect.addEventListener('change', function () {
-    periodAmount.innerHTML = periodSelect.value;
-});
-
-let addExp = [];
-for (let i = 0; i < appData.addExpenses.length; i++) {
-    let element = appData.addExpenses[i].trim();
-    element = element.charAt(0).toUpperCase() + element.substring(i).toLowerCase();
-    addExp.push(element);
-}
