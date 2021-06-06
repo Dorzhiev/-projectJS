@@ -243,7 +243,7 @@ AppData.prototype.startBtn = function() { //AppData.prototype.start поменя
     };
 
     AppData.prototype.eventListener = function () {
-        startBtn.addEventListener('click', appData.startBtn.bind(appData));//'click', appData.start поменял на на startBtn
+        startBtn.addEventListener('click', appData.startBtn.bind(appData)); //'click', appData.start поменял на на startBtn
         expensesPlus.addEventListener('click', appData.addExpensesBlock);
         incomePlus.addEventListener('click', appData.addIncomeBlock);
         salaryAmount.addEventListener('keyup', appData.check);
@@ -263,4 +263,6 @@ AppData.prototype.startBtn = function() { //AppData.prototype.start поменя
 
 const appData = new AppData();
 appData.eventListener();
+
+
 
